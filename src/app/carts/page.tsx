@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -11,12 +10,15 @@ import {
 import { TyHeading } from "@/components/ty-heading";
 import { TyContainer } from "@/components/ty-container";
 import { TyDescriptionPage } from "@/components/ty-description-page";
+import { getCartsWithUser } from "@/actions/actions";
 
 export const metadata: Metadata = {
   title: "Carts - Inventory Application",
 };
 
-export default function Carts() {
+export default async function Carts() {
+  const carts = await getCartsWithUser();
+
   return (
     <div>
       <TyHeading label="Carts" />
@@ -26,22 +28,29 @@ export default function Carts() {
       </TyDescriptionPage>
       <TyContainer>
         <Table>
-          <TableCaption>A list of your recent invoices.</TableCaption>
           <TableHeader>
             <TableRow>
-              <TableHead className="w-[100px]">Invoice</TableHead>
+              <TableHead className="w-[100px]">User Name</TableHead>
+              <TableHead>Date</TableHead>
               <TableHead>Status</TableHead>
-              <TableHead>Method</TableHead>
-              <TableHead className="text-right">Amount</TableHead>
+              <TableHead className="text-right">Number of items</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            <TableRow>
-              <TableCell className="font-medium">INV001</TableCell>
-              <TableCell>Paid</TableCell>
-              <TableCell>Credit Card</TableCell>
-              <TableCell className="text-right">$250.00</TableCell>
-            </TableRow>
+            {carts?.map((cart, index) => (
+              <TableRow key={index}>
+                <TableCell>
+                  {cart.user
+                    ? `${cart.user?.firstname} ${cart.user?.lastname}`
+                    : "No user"}
+                </TableCell>
+                <TableCell>{cart.date}</TableCell>
+                <TableCell>{cart.status}</TableCell>
+                <TableCell className="text-right">
+                  {cart.items.length}
+                </TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TyContainer>

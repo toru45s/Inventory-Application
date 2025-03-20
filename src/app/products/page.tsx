@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -25,7 +24,11 @@ export default async function Products() {
 
   return (
     <div>
-      <TyHeading label="Products" />
+      <div className="flex justify-between items-center">
+        <TyHeading label="Products" />
+        <Button variant="outline">Create Product</Button>
+      </div>
+
       <TyDescriptionPage>
         This is the products page. Here you can see all the products that are
         available.
@@ -55,7 +58,13 @@ export default async function Products() {
                     <TableCell className="text-right">
                       <TySheet
                         title={product.name}
-                        description={product.category}
+                        price={product.price}
+                        category={product.category}
+                        description={product.description}
+                        stock={product.stock}
+                        imageUrl={product.image_url}
+                        sku={product.sku}
+                        rating={product.rating}
                       >
                         <Button variant="outline">Show Detail</Button>
                       </TySheet>
