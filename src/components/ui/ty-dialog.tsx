@@ -24,7 +24,7 @@ export function TyDialog(props: Props) {
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
           <DialogDescription>{description}</DialogDescription>
-          <div className="flex flex-col space-x-4 px-4">{children}</div>
+          <div className="flex flex-col space-x-4 pt-4">{children}</div>
         </DialogHeader>
       </DialogContent>
     </Dialog>
