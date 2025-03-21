@@ -3,6 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Star, StarHalf } from "lucide-react";
 import { TyHeading } from "@/components/ui/ty-heading";
 import { TyText } from "@/components/ui/ty-text";
+import { TyLabel } from "@/components/ui/ty-label";
+import { TyGrid } from "@/components/ui/ty-grid";
+
 import Image from "next/image";
 
 import type { Product } from "@/types/types";
@@ -39,57 +42,36 @@ export function TySheetProduct(props: Props) {
       description="View and manage product information"
       triggerElement={<Button variant="outline">Show Detail</Button>}
     >
-      <div className="relative w-[350px] h-[350px]">
-        {false ? (
-          <Image
-            src={product.image_url}
-            width={350}
-            height={350}
-            alt={product.name}
-          />
-        ) : (
-          <div className="w-full h-full border border-gray-200 rounded-md  flex items-center justify-center">
-            <span>No Image</span>
-          </div>
-        )}
-      </div>
-
-      <div className="py-4 flex flex-col space-y-4">
-        <div className="flex flex-col">
-          <TyHeading label={product.name} as="h3" />
-          <TyText as="span" type="lg">
-            ${product.price}
-          </TyText>
-          {renderRating(product.rating.rate)}
+      <TyGrid gap="lg">
+        <div className="relative w-[350px] h-[350px]">
+          {false ? (
+            <Image
+              src={product.image_url}
+              width={350}
+              height={350}
+              alt={product.name}
+            />
+          ) : (
+            <div className="w-full h-full border border-gray-200 rounded-md  flex items-center justify-center">
+              <span>No Image</span>
+            </div>
+          )}
         </div>
-
-        <div className="grid grid-cols-2 gap-2">
-          <div className="flex flex-col">
-            <h4 className="text-sm font-medium text-muted-foreground">
-              Category
-            </h4>
-            <TyText as="p" type="md">
-              {product.category}
+        <TyGrid gap="lg">
+          <TyGrid>
+            <TyHeading label={product.name} as="h3" />
+            <TyText as="span" type="lg">
+              ${product.price}
             </TyText>
-          </div>
-
-          <div className="flex flex-col">
-            <h4 className="text-sm font-medium text-muted-foreground">
-              Number of stock
-            </h4>
-            <TyText as="span" type="md">
-              {product.stock}
-            </TyText>
-          </div>
-
-          <div className="flex flex-col">
-            <h4 className="text-sm font-medium text-muted-foreground">SKU</h4>
-            <TyText as="p" type="sm">
-              {product.sku}
-            </TyText>
-          </div>
-        </div>
-      </div>
+            {renderRating(product.rating.rate)}
+          </TyGrid>
+          <TyGrid gap="md">
+            <TyLabel label="Category" value={product.category} />
+            <TyLabel label="Number of stock" value={`${product.stock}`} />
+            <TyLabel label="SKU" value={product.sku} />
+          </TyGrid>
+        </TyGrid>
+      </TyGrid>
     </TySheet>
   );
 }
