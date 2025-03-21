@@ -2,11 +2,11 @@ import { Metadata } from "next";
 
 import { TyHeading } from "@/components/ui/ty-heading";
 import { TyContainer } from "@/components/ui/ty-container";
-import { Button } from "@/components/ui/button";
 
 import { getProducts } from "@/actions/actions";
 import { TyDescriptionPage } from "@/components/ui/ty-description-page";
 import { TyTableProducts } from "@/components/products/ty-table-products";
+import { TyDialogProduct } from "@/components/products/ty-dialog-product";
 
 export const metadata: Metadata = {
   title: "Products - Inventory Application",
@@ -19,7 +19,7 @@ export default async function Products() {
     <div>
       <div className="flex justify-between items-center">
         <TyHeading label="Products" />
-        <Button variant="outline">Create Product</Button>
+        <TyDialogProduct />
       </div>
 
       <TyDescriptionPage>
