@@ -6,7 +6,7 @@ export function TyDialogProduct() {
     <TyDialog
       title="Create Product"
       description="Create a new product"
-      triggerElement={<Button variant="outline">Create New Product</Button>}
+      triggerElement={<Button variant="outline">Add New Product</Button>}
     >
       content
     </TyDialog>

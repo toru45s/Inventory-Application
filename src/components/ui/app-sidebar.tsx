@@ -35,7 +35,9 @@ export function AppSidebar() {
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Inventory Application</SidebarGroupLabel>
+          <SidebarGroupLabel>
+            Inventory Management Application
+          </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (

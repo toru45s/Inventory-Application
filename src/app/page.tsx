@@ -5,7 +5,7 @@ import { TyLink } from "@/components/ui/ty-link";
 import { TyDescriptionPage } from "@/components/ui/ty-description-page";
 
 export const metadata: Metadata = {
-  title: "Inventory Application",
+  title: "Inventory Management Application",
   description: "This is an inventory application",
 };
 

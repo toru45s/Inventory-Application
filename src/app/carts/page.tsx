@@ -6,7 +6,7 @@ import { getCartsWithUser } from "@/actions/actions";
 import { TyTableCarts } from "@/components/carts/ty-table-carts";
 
 export const metadata: Metadata = {
-  title: "Carts - Inventory Application",
+  title: "Carts - Inventory Management Application",
 };
 
 export default async function Carts() {

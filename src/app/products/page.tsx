@@ -9,7 +9,7 @@ import { TyTableProducts } from "@/components/products/ty-table-products";
 import { TyDialogProduct } from "@/components/products/ty-dialog-product";
 
 export const metadata: Metadata = {
-  title: "Products - Inventory Application",
+  title: "Products - Inventory Management Application",
 };
 
 export default async function Products() {

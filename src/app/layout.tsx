@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Inventory Application",
+  title: "Inventory Management Application",
   description: "This is an inventory application",
 };
 
