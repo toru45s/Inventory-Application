@@ -11,11 +11,11 @@ import {
 } from "@/components/ui/table";
 import { Skeleton } from "@/components/ui/skeleton";
 
-import type { CartWithUser } from "@/types/types";
+import type { CartWithUserProducts } from "@/types/types";
 import { TySheetCart } from "@/components/carts/ty-sheet-cart";
 
 type Props = {
-  carts: CartWithUser[] | undefined;
+  carts: CartWithUserProducts[] | undefined;
 };
 
 export function TyTableCarts(props: Props) {

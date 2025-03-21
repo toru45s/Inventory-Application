@@ -54,7 +54,7 @@ export function TySheetProduct(props: Props) {
         )}
       </div>
 
-      <div className="p-4 flex flex-col space-y-4">
+      <div className="py-4 flex flex-col space-y-4">
         <div className="flex flex-col">
           <TyHeading label={product.name} as="h3" />
           <TyText as="span" type="lg">
@@ -68,7 +68,7 @@ export function TySheetProduct(props: Props) {
             <h4 className="text-sm font-medium text-muted-foreground">
               Category
             </h4>
-            <TyText as="span" type="md">
+            <TyText as="p" type="md">
               {product.category}
             </TyText>
           </div>
