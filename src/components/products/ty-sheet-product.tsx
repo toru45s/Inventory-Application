@@ -1,10 +1,10 @@
 import { TySheet } from "@/components/ui/ty-sheet";
 import { Button } from "@/components/ui/button";
-import { Star, StarHalf } from "lucide-react";
 import { TyHeading } from "@/components/ui/ty-heading";
 import { TyText } from "@/components/ui/ty-text";
 import { TyLabel } from "@/components/ui/ty-label";
 import { TyGrid } from "@/components/ui/ty-grid";
+import { useConvertRatingToStar } from "@/hooks/use-convert-rating-to-star";
 
 import Image from "next/image";
 
@@ -16,25 +16,7 @@ type Props = {
 
 export function TySheetProduct(props: Props) {
   const { product } = props;
-  // Function to render star ratings
-  const renderRating = (rating: number) => {
-    const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 >= 0.5;
-
-    return (
-      <div className="flex items-center">
-        {[...Array(fullStars)].map((_, i) => (
-          <Star key={i} className="h-4 w-4 fill-primary text-primary" />
-        ))}
-        {hasHalfStar && (
-          <StarHalf className="h-4 w-4 fill-primary text-primary" />
-        )}
-        <span className="ml-2 text-sm text-muted-foreground">
-          {rating.toFixed(1)}
-        </span>
-      </div>
-    );
-  };
+  const { renderRating } = useConvertRatingToStar();
 
   return (
     <TySheet
@@ -58,14 +40,22 @@ export function TySheetProduct(props: Props) {
           )}
         </div>
         <TyGrid gap="lg">
-          <TyGrid>
-            <TyHeading label={product.name} as="h3" />
-            <TyText as="span" type="lg">
-              ${product.price}
-            </TyText>
-            {renderRating(product.rating.rate)}
+          <TyGrid gap="sm">
+            <TyGrid>
+              <TyHeading label={product.name} as="h3" />
+              <TyText as="span" type="lg">
+                ${product.price}
+              </TyText>
+              {renderRating(product.rating.rate)}
+            </TyGrid>
+            <TyGrid>
+              <TyText as="p" type="sm">
+                {product.description}
+              </TyText>
+            </TyGrid>
           </TyGrid>
-          <TyGrid gap="md">
+
+          <TyGrid gap="sm">
             <TyLabel label="Category" value={product.category} />
             <TyLabel label="Number of stock" value={`${product.stock}`} />
             <TyLabel label="SKU" value={product.sku} />
