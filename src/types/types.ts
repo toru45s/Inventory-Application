@@ -16,6 +16,7 @@ export type Product = {
 export type CartItem = {
   productId: number;
   quantity: number;
+  product?: Product;
 };
 
 export type Cart = {
@@ -41,5 +42,5 @@ export type User = {
 
 export type CartWithUserProducts = Cart & {
   user: User | undefined;
-  items: (CartItem & { product: Product })[];
+  items: CartItem[];
 };
