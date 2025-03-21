@@ -1,5 +1,5 @@
 import { TySheet } from "@/components/ui/ty-sheet";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/shadcn/button";
 import { TyHeading } from "@/components/ui/ty-heading";
 import { TyText } from "@/components/ui/ty-text";
 import { TyLabel } from "@/components/ui/ty-label";

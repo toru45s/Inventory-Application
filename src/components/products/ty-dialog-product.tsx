@@ -1,5 +1,5 @@
 import { TyDialog } from "@/components/ui/ty-dialog";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/shadcn/button";
 
 export function TyDialogProduct() {
   return (

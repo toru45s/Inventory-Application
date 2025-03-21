@@ -8,8 +8,8 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { Skeleton } from "@/components/ui/skeleton";
+} from "@/components/ui/shadcn/table";
+import { Skeleton } from "@/components/ui/shadcn/skeleton";
 import { TySheetProduct } from "@/components/products/ty-sheet-product";
 
 import type { Product } from "@/types/types";

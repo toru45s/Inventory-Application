@@ -1,10 +1,10 @@
 import { TySheet } from "@/components/ui/ty-sheet";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/shadcn/button";
 import { TyHeading } from "@/components/ui/ty-heading";
 import { TyLabel } from "@/components/ui/ty-label";
 import { TyGrid } from "@/components/ui/ty-grid";
-import { Separator } from "@/components/ui/separator";
-import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/shadcn/separator";
+import { Badge } from "@/components/ui/shadcn/badge";
 
 import type { CartWithUserProducts } from "@/types/types";
 
