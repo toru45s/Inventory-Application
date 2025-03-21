@@ -1,7 +1,7 @@
 "use server";
 
 import { convertDate } from "@/lib/utils";
-import type { Product, Cart, User, CartWithUser } from "@/types/types";
+import type { Product, Cart, User, CartWithUserProducts } from "@/types/types";
 
 async function getData(
   uri: string
@@ -36,7 +36,11 @@ async function getProducts(): Promise<Product[] | undefined> {
   return (await getData("/mock/public/products")) as Product[] | undefined;
 }
 
-async function getCartsWithUser(): Promise<CartWithUser[] | undefined> {
+async function getProduct(id: number): Promise<Product | undefined> {
+  return (await getData(`/mock/public/products/${id}`)) as Product | undefined;
+}
+
+async function getCartsWithUser(): Promise<CartWithUserProducts[] | undefined> {
   const carts = await getCarts();
 
   if (!carts) {
@@ -46,14 +50,26 @@ async function getCartsWithUser(): Promise<CartWithUser[] | undefined> {
   const cartsIncludingUser = await Promise.all(
     carts.map(async (cart) => {
       const user = await getUser(cart.userId);
+
+      const items = await Promise.all(
+        cart.items.map(async (item) => {
+          const product = await getProduct(item.productId);
+          return {
+            ...item,
+            product,
+          };
+        })
+      );
+
       return {
         ...cart,
         date: convertDate(cart.date),
         user,
+        items,
       };
     })
   );
-  return cartsIncludingUser as CartWithUser[] | undefined;
+  return cartsIncludingUser as CartWithUserProducts[] | undefined;
 }
 
 export { getCartsWithUser, getProducts };
