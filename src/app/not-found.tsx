@@ -1,12 +1,16 @@
 import Link from "next/link";
-import { TyHeading } from "@/components/ty-heading";
-import { TyContainer } from "@/components/ty-container";
-import { TyParagraph } from "@/components/ty-paragraph";
+import { TyHeading } from "@/components/ui/ty-heading";
+import { TyContainer } from "@/components/ui/ty-container";
+import { TyDescriptionPage } from "@/components/ui/ty-description-page";
+
 export default function NotFound() {
   return (
     <div>
       <TyHeading label="Not Found" />
-      <TyParagraph>Could not find requested resource</TyParagraph>
+      <TyDescriptionPage>
+        The page you are looking for does not exist.
+      </TyDescriptionPage>
+
       <TyContainer>
         <Link href="/">Return Home</Link>
       </TyContainer>

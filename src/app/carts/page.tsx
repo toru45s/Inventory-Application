@@ -1,16 +1,9 @@
 import { Metadata } from "next";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { TyHeading } from "@/components/ty-heading";
-import { TyContainer } from "@/components/ty-container";
-import { TyDescriptionPage } from "@/components/ty-description-page";
+import { TyHeading } from "@/components/ui/ty-heading";
+import { TyContainer } from "@/components/ui/ty-container";
+import { TyDescriptionPage } from "@/components/ui/ty-description-page";
 import { getCartsWithUser } from "@/actions/actions";
+import { TyTableCarts } from "@/components/carts/ty-table-carts";
 
 export const metadata: Metadata = {
   title: "Carts - Inventory Application",
@@ -27,32 +20,7 @@ export default async function Carts() {
         available.
       </TyDescriptionPage>
       <TyContainer>
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead className="w-[100px]">User Name</TableHead>
-              <TableHead>Date</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead className="text-right">Number of items</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {carts?.map((cart, index) => (
-              <TableRow key={index}>
-                <TableCell>
-                  {cart.user
-                    ? `${cart.user?.firstname} ${cart.user?.lastname}`
-                    : "No user"}
-                </TableCell>
-                <TableCell>{cart.date}</TableCell>
-                <TableCell>{cart.status}</TableCell>
-                <TableCell className="text-right">
-                  {cart.items.length}
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+        <TyTableCarts carts={carts} />
       </TyContainer>
     </div>
   );

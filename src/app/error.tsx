@@ -1,9 +1,11 @@
 "use client"; // Error boundaries must be Client Components
 
 import { useEffect } from "react";
-import { TyHeading } from "@/components/ty-heading";
-import { TyParagraph } from "@/components/ty-paragraph";
-import { TyContainer } from "@/components/ty-container";
+import { TyHeading } from "@/components/ui/ty-heading";
+import { TyContainer } from "@/components/ui/ty-container";
+import { TyDescriptionPage } from "@/components/ui/ty-description-page";
+
+import { TyLink } from "@/components/ui/ty-link";
 
 export default function Error({
   error,
@@ -20,19 +22,17 @@ export default function Error({
   return (
     <div>
       <TyHeading label="Something went wrong!" />
-      <TyParagraph>
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard d
-      </TyParagraph>
+      <TyDescriptionPage>
+        An error occurred. Please try again later.
+      </TyDescriptionPage>
       <TyContainer>
-        <button
-          onClick={
-            // Attempt to recover by trying to re-render the segment
-            () => reset()
-          }
-        >
-          Try again
-        </button>
+        <TyContainer>
+          <ul>
+            <li>
+              <TyLink href="/">Back to home page</TyLink>
+            </li>
+          </ul>
+        </TyContainer>
       </TyContainer>
     </div>
   );
