@@ -1,8 +1,8 @@
 import { Metadata } from "next";
-import { TyHeading } from "@/components/ty-heading";
-import { TyContainer } from "@/components/ty-container";
-import { TyLink } from "@/components/ty-link";
-import { TyDescriptionPage } from "@/components/ty-description-page";
+import { TyHeading } from "@/components/ui/ty-heading";
+import { TyContainer } from "@/components/ui/ty-container";
+import { TyLink } from "@/components/ui/ty-link";
+import { TyDescriptionPage } from "@/components/ui/ty-description-page";
 
 export const metadata: Metadata = {
   title: "Inventory Application",

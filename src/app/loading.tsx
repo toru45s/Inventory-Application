@@ -1,4 +1,4 @@
-import { TySpinner } from "@/components/ty-spinner";
+import { TySpinner } from "@/components/ui/ty-spinner";
 
 export default function Loading() {
   // Or a custom loading skeleton component

@@ -1,4 +1,4 @@
-import { TyParagraph } from "@/components/ty-paragraph";
+import { TyText } from "@/components/ui/ty-text";
 type Props = {
   children: React.ReactNode;
 };
@@ -6,5 +6,5 @@ type Props = {
 export function TyDescriptionPage(props: Props) {
   const { children } = props;
 
-  return <TyParagraph className="mt-2 italic">{children}</TyParagraph>;
+  return <TyText className="mt-2 italic">{children}</TyText>;
 }
