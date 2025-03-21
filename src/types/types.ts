@@ -13,14 +13,14 @@ export type Product = {
   };
 };
 
+export type CartItem = {
+  productId: number;
+  quantity: number;
+};
+
 export type Cart = {
   userId: number;
-  items: [
-    {
-      productId: number;
-      quantity: number;
-    }
-  ];
+  items: CartItem[];
   date: string;
   status: string;
 };
@@ -39,4 +39,7 @@ export type User = {
   phone: string;
 };
 
-export type CartWithUser = Cart & { user: User | undefined };
+export type CartWithUserProducts = Cart & {
+  user: User | undefined;
+  items: (CartItem & { product: Product })[];
+};
