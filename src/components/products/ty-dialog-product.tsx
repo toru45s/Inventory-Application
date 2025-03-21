@@ -1,5 +1,6 @@
 import { TyDialog } from "@/components/ui/ty-dialog";
 import { Button } from "@/components/ui/shadcn/button";
+import { TyFormAddProduct } from "@/components/products/ty-form-add-product";
 
 export function TyDialogProduct() {
   return (
@@ -8,7 +9,7 @@ export function TyDialogProduct() {
       description="Create a new product"
       triggerElement={<Button variant="outline">Add New Product</Button>}
     >
-      content
+      <TyFormAddProduct />
     </TyDialog>
   );
 }
