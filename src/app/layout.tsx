@@ -6,6 +6,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/shadcn/sidebar";
 import { AppSidebar } from "@/components/ui/shadcn/app-sidebar";
+import { Toaster } from "@/components/ui/shadcn/sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,6 +40,7 @@ export default function RootLayout({
             {children}
           </main>
         </SidebarProvider>
+        <Toaster />
       </body>
     </html>
   );
