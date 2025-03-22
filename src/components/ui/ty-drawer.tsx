@@ -5,7 +5,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "@/components/ui/drawer";
+} from "@/components/ui/shadcn/drawer";
 
 type Props = {
   title: string;
