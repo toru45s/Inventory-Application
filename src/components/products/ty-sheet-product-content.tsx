@@ -21,9 +21,12 @@ export function TySheetProductContent(props: Props) {
 
   const isMobile = useIsMobile();
 
-  const classNamesImage = isMobile ? `w-full` : "w-[350px] h-[350px]";
-  const height = `${(345 / 375) * 100}vw`;
+  const width = 345;
+  const screenWidth = 375;
+  const height = `${(width / screenWidth) * 100}vw`;
   const stylesImage = isMobile ? { height } : {};
+
+  const classNamesImage = isMobile ? `w-full` : "w-[350px] h-[350px]";
 
   return (
     <TyGrid gap="lg">
