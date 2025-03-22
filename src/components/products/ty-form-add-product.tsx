@@ -36,6 +36,7 @@ export function TyFormAddProduct() {
   });
 
   const onSubmit = (values: z.infer<typeof formSchemaAddProduct>) => {
+    onOpenChange(false);
     toast("Product has been created.");
     console.log(values);
   };
@@ -67,9 +68,9 @@ export function TyFormAddProduct() {
             name="price"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Price</FormLabel>
+                <FormLabel>Price ($)</FormLabel>
                 <FormControl>
-                  <Input type="number" placeholder="0" {...field} />
+                  <Input type="number" placeholder="0" {...field} min="0" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -125,7 +126,12 @@ export function TyFormAddProduct() {
               <FormItem>
                 <FormLabel>Number in stock</FormLabel>
                 <FormControl>
-                  <Input type="number" placeholder="shadcn" {...field} />
+                  <Input
+                    type="number"
+                    placeholder="shadcn"
+                    {...field}
+                    min="0"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -138,7 +144,12 @@ export function TyFormAddProduct() {
               <FormItem>
                 <FormLabel>Rating</FormLabel>
                 <FormControl>
-                  <Input type="number" placeholder="shadcn" {...field} />
+                  <Input
+                    type="number"
+                    placeholder="shadcn"
+                    {...field}
+                    min="0"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
