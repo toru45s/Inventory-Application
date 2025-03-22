@@ -12,20 +12,23 @@ type Props = {
   description: string;
   triggerElement: React.ReactNode;
   children: React.ReactNode;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
 };
 
 export function TyDialog(props: Props) {
-  const { title, description, triggerElement, children } = props;
+  const { title, description, triggerElement, children, open, onOpenChange } =
+    props;
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogTrigger asChild>{triggerElement}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
           <DialogDescription>{description}</DialogDescription>
-          <div className="flex flex-col space-x-4 pt-4">{children}</div>
         </DialogHeader>
+        <div className="flex flex-col space-x-4 pt-4">{children}</div>
       </DialogContent>
     </Dialog>
   );

@@ -15,8 +15,12 @@ import {
 } from "@/components/ui/shadcn/form";
 import { Input } from "@/components/ui/shadcn/input";
 import { formSchemaAddProduct } from "@/lib/schemas";
+import { TyGrid } from "../ui/ty-grid";
+import { useDialogProduct } from "@/hooks/use-dialog-product";
 
 export function TyFormAddProduct() {
+  const { onOpenChange } = useDialogProduct();
+
   const form = useForm<z.infer<typeof formSchemaAddProduct>>({
     resolver: zodResolver(formSchemaAddProduct),
     defaultValues: {
@@ -37,39 +41,27 @@ export function TyFormAddProduct() {
   };
 
   const onCancel = () => {
-    console.log("cancel");
+    onOpenChange(false);
   };
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Name</FormLabel>
-              <FormControl>
-                <Input placeholder="shadcn" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="description"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Description</FormLabel>
-              <FormControl>
-                <Input placeholder="shadcn" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <div className="flex space-x-4">
+        <TyGrid cols={2} gap="lg">
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Name</FormLabel>
+                <FormControl>
+                  <Input placeholder="shadcn" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
           <FormField
             control={form.control}
             name="price"
@@ -83,6 +75,21 @@ export function TyFormAddProduct() {
               </FormItem>
             )}
           />
+        </TyGrid>
+        <FormField
+          control={form.control}
+          name="description"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Description</FormLabel>
+              <FormControl>
+                <Input placeholder="shadcn" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <TyGrid cols={2} gap="lg">
           <FormField
             control={form.control}
             name="category"
@@ -109,21 +116,8 @@ export function TyFormAddProduct() {
               </FormItem>
             )}
           />
-          <FormField
-            control={form.control}
-            name="imageUrl"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Image URL</FormLabel>
-                <FormControl>
-                  <Input placeholder="shadcn" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
-        <div className="flex space-x-4">
+        </TyGrid>
+        <TyGrid cols={2} gap="lg">
           <FormField
             control={form.control}
             name="numberInStock"
@@ -150,15 +144,27 @@ export function TyFormAddProduct() {
               </FormItem>
             )}
           />
-        </div>
+        </TyGrid>
+        <FormField
+          control={form.control}
+          name="imageUrl"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Image URL</FormLabel>
+              <FormControl>
+                <Input placeholder="shadcn" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <TyGrid cols={2} gap="lg">
+          <Button type="submit">Submit</Button>
 
-        <Button type="submit" onClick={onCancel}>
-          Submit
-        </Button>
-
-        <Button type="button" variant="secondary">
-          Cancel
-        </Button>
+          <Button onClick={onCancel} type="button" variant="secondary">
+            Cancel
+          </Button>
+        </TyGrid>
       </form>
     </Form>
   );

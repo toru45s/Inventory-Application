@@ -12,13 +12,16 @@ type Props = {
   description: string;
   triggerElement: React.ReactNode;
   children: React.ReactNode;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
 };
 
 export function TySheet(props: Props) {
-  const { title, description, triggerElement, children } = props;
+  const { title, description, triggerElement, children, open, onOpenChange } =
+    props;
 
   return (
-    <Sheet>
+    <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetTrigger asChild>{triggerElement}</SheetTrigger>
       <SheetContent>
         <SheetHeader>

@@ -10,7 +10,7 @@ import {
   TableRow,
 } from "@/components/ui/shadcn/table";
 import { Skeleton } from "@/components/ui/shadcn/skeleton";
-
+import { useIsMobile } from "@/hooks/use-mobile";
 import type { CartWithUserProducts } from "@/types/types";
 import { TySheetCart } from "@/components/carts/ty-sheet-cart";
 
@@ -21,6 +21,7 @@ type Props = {
 export function TyTableCarts(props: Props) {
   const { carts } = props;
   const [loading, setLoading] = useState(true);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     if (carts) {
@@ -35,9 +36,14 @@ export function TyTableCarts(props: Props) {
       <TableHeader>
         <TableRow>
           <TableHead className="w-[100px]">User Name</TableHead>
-          <TableHead>Date</TableHead>
-          <TableHead>Status</TableHead>
-          <TableHead>Number of items</TableHead>
+
+          {!isMobile && (
+            <>
+              <TableHead>Date</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead>Number of items</TableHead>
+            </>
+          )}
           <TableHead className="text-right"></TableHead>
         </TableRow>
       </TableHeader>
@@ -48,15 +54,20 @@ export function TyTableCarts(props: Props) {
                 <TableCell>
                   <Skeleton className="h-4 w-[80px]" />
                 </TableCell>
-                <TableCell>
-                  <Skeleton className="h-4 w-[60px]" />
-                </TableCell>
-                <TableCell>
-                  <Skeleton className="h-4 w-[100px]" />
-                </TableCell>
-                <TableCell>
-                  <Skeleton className="h-4 w-[70px]" />
-                </TableCell>
+
+                {!isMobile && (
+                  <>
+                    <TableCell>
+                      <Skeleton className="h-4 w-[60px]" />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton className="h-4 w-[100px]" />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton className="h-4 w-[70px]" />
+                    </TableCell>
+                  </>
+                )}
                 <TableCell className="text-right">
                   <Skeleton className="h-4 w-[70px] ml-auto" />
                 </TableCell>
@@ -70,9 +81,14 @@ export function TyTableCarts(props: Props) {
                     ? `${cart.user?.firstname} ${cart.user?.lastname}`
                     : "No user"}
                 </TableCell>
-                <TableCell>{cart.date}</TableCell>
-                <TableCell>{cart.status}</TableCell>
-                <TableCell>{cart.items.length}</TableCell>
+
+                {!isMobile && (
+                  <>
+                    <TableCell>{cart.date}</TableCell>
+                    <TableCell>{cart.status}</TableCell>
+                    <TableCell>{cart.items.length}</TableCell>
+                  </>
+                )}
                 <TableCell className="text-right">
                   <TySheetCart cart={cart} />
                 </TableCell>
