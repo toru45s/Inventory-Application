@@ -1,7 +1,7 @@
 "use client";
 
+import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/shadcn/button";
@@ -13,10 +13,22 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/shadcn/form";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+  SelectGroup,
+} from "@/components/ui/shadcn/select";
+
 import { Input } from "@/components/ui/shadcn/input";
 import { formSchemaAddProduct } from "@/lib/schemas";
-import { TyGrid } from "../ui/ty-grid";
+import { TyGrid } from "@/components/ui/ty-grid";
+import { TyRequired } from "@/components/ui/ty-required";
 import { useDialogProduct } from "@/hooks/use-dialog-product";
+
+import { CATEGORIES } from "@/lib/constants";
 
 export function TyFormAddProduct() {
   const { onOpenChange } = useDialogProduct();
@@ -25,11 +37,11 @@ export function TyFormAddProduct() {
     resolver: zodResolver(formSchemaAddProduct),
     defaultValues: {
       name: "",
-      price: 0,
+      price: "",
       category: "",
       description: "",
       numberInStock: 0,
-      rating: 0,
+      rating: "",
       imageUrl: "",
       sku: "",
     },
@@ -37,8 +49,8 @@ export function TyFormAddProduct() {
 
   const onSubmit = (values: z.infer<typeof formSchemaAddProduct>) => {
     onOpenChange(false);
-    toast("Product has been created.");
     console.log(values);
+    toast(`"${values.name}" has been created.`);
   };
 
   const onCancel = () => {
@@ -54,9 +66,12 @@ export function TyFormAddProduct() {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Name</FormLabel>
+                <FormLabel>
+                  Name
+                  <TyRequired />
+                </FormLabel>
                 <FormControl>
-                  <Input placeholder="shadcn" {...field} />
+                  <Input placeholder="Wireless Mouse" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -70,7 +85,7 @@ export function TyFormAddProduct() {
               <FormItem>
                 <FormLabel>Price ($)</FormLabel>
                 <FormControl>
-                  <Input type="number" placeholder="0" {...field} min="0" />
+                  <Input placeholder="29.99" {...field} min="0" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -84,7 +99,10 @@ export function TyFormAddProduct() {
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input
+                  placeholder="Ergonomic wireless mouse with adjustable DPI settings and long battery life."
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -98,7 +116,25 @@ export function TyFormAddProduct() {
               <FormItem>
                 <FormLabel>Category</FormLabel>
                 <FormControl>
-                  <Input placeholder="shadcn" {...field} />
+                  <Select value={field.value} onValueChange={field.onChange}>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Category" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        {CATEGORIES.map(
+                          (category: { value: string; label: string }) => (
+                            <SelectItem
+                              key={category.value}
+                              value={category.value}
+                            >
+                              {category.label}
+                            </SelectItem>
+                          )
+                        )}
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -111,7 +147,7 @@ export function TyFormAddProduct() {
               <FormItem>
                 <FormLabel>SKU</FormLabel>
                 <FormControl>
-                  <Input placeholder="shadcn" {...field} />
+                  <Input placeholder="WMOUSE-001" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -144,12 +180,7 @@ export function TyFormAddProduct() {
               <FormItem>
                 <FormLabel>Rating</FormLabel>
                 <FormControl>
-                  <Input
-                    type="number"
-                    placeholder="shadcn"
-                    {...field}
-                    min="0"
-                  />
+                  <Input placeholder="4.5" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -163,7 +194,7 @@ export function TyFormAddProduct() {
             <FormItem>
               <FormLabel>Image URL</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="image url" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
