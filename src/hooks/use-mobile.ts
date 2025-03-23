@@ -2,6 +2,7 @@ import * as React from "react";
 
 const MOBILE_BREAKPOINT = 768;
 
+// Hook to determine if the current screen size is mobile
 export function useIsMobile() {
   const [isMobile, setIsMobile] = React.useState<boolean | undefined>(
     undefined

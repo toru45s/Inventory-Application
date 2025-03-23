@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+// Define a schema for the form
 export const formSchemaAddProduct = z.object({
   name: z.string().min(2, {
     message: "Name must be at least 2 characters.",
