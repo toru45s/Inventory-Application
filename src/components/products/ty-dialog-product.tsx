@@ -6,6 +6,9 @@ import { TyDrawer } from "@/components/ui/ty-drawer";
 import { useDialogProduct } from "@/hooks/use-dialog-product";
 import { useIsMobile } from "@/hooks/use-mobile";
 
+const TITLE = "Create Product";
+const DESCRIPTION = "Create a new product";
+
 export function TyDialogProduct() {
   const { open, onOpenChange } = useDialogProduct();
   const isMobile = useIsMobile();
@@ -17,8 +20,8 @@ export function TyDialogProduct() {
       <TyDrawer
         open={open}
         onOpenChange={onOpenChange}
-        title="Create Product"
-        description="Create a new product"
+        title={TITLE}
+        description={DESCRIPTION}
         triggerElement={ButtonOpen}
       >
         <TyFormAddProduct />
@@ -30,8 +33,8 @@ export function TyDialogProduct() {
     <TyDialog
       open={open}
       onOpenChange={onOpenChange}
-      title="Create Product"
-      description="Create a new product"
+      title={TITLE}
+      description={DESCRIPTION}
       triggerElement={ButtonOpen}
     >
       <TyFormAddProduct />

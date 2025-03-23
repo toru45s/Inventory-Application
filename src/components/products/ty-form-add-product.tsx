@@ -49,7 +49,10 @@ export function TyFormAddProduct() {
 
   const onSubmit = (values: z.infer<typeof formSchemaAddProduct>) => {
     onOpenChange(false);
+
+    // Handle form submission
     console.log(values);
+
     toast(`"${values.name}" has been created.`);
   };
 

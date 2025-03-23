@@ -14,6 +14,9 @@ type Props = {
   product: Product;
 };
 
+const TITLE = "Product Details";
+const DESCRIPTION = "View and manage product information";
+
 export function TySheetProduct(props: Props) {
   const { product } = props;
   const [open, setOpen] = useState(false);
@@ -26,8 +29,8 @@ export function TySheetProduct(props: Props) {
       <TyDrawer
         open={open}
         onOpenChange={setOpen}
-        title="Create Product"
-        description="Create a new product"
+        title={TITLE}
+        description={DESCRIPTION}
         triggerElement={ButtonOpen}
       >
         <TySheetProductContent product={product} />
@@ -39,8 +42,8 @@ export function TySheetProduct(props: Props) {
     <TySheet
       open={open}
       onOpenChange={setOpen}
-      title="Product Details"
-      description="View and manage product information"
+      title={TITLE}
+      description={DESCRIPTION}
       triggerElement={ButtonOpen}
     >
       <TySheetProductContent product={product} />

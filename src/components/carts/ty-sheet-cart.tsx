@@ -12,6 +12,9 @@ type Props = {
   cart: CartWithUserProducts;
 };
 
+const TITLE = "Cart Details";
+const DESCRIPTION = "View and manage cart information";
+
 export function TySheetCart(props: Props) {
   const { cart } = props;
   const [open, setOpen] = useState(false);
@@ -22,8 +25,8 @@ export function TySheetCart(props: Props) {
   if (isMobile) {
     return (
       <TyDrawer
-        title="Cart Details"
-        description="View and manage cart information"
+        title={TITLE}
+        description={DESCRIPTION}
         triggerElement={ButtonOpen}
         open={open}
         onOpenChange={setOpen}
@@ -35,8 +38,8 @@ export function TySheetCart(props: Props) {
 
   return (
     <TySheet
-      title="Cart Details"
-      description="View and manage cart information"
+      title={TITLE}
+      description={DESCRIPTION}
       triggerElement={ButtonOpen}
       open={open}
       onOpenChange={setOpen}
