@@ -3,7 +3,7 @@ import { TyHeading } from "@/components/ui/ty-heading";
 import { TyText } from "@/components/ui/ty-text";
 import { TyLabel } from "@/components/ui/ty-label";
 import { TyGrid } from "@/components/ui/ty-grid";
-import { useConvertRatingToStar } from "@/hooks/use-convert-rating-to-star";
+import { TyRatingStars } from "@/components/ui/ty-rating-stars";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
 
@@ -17,7 +17,6 @@ type Props = {
 
 export function TySheetProductContent(props: Props) {
   const { product } = props;
-  const { renderRating } = useConvertRatingToStar();
 
   const isMobile = useIsMobile();
 
@@ -52,7 +51,7 @@ export function TySheetProductContent(props: Props) {
             <TyText as="span" type="lg">
               ${product.price}
             </TyText>
-            {renderRating(product.rating.rate)}
+            <TyRatingStars rating={product.rating.rate} />
           </TyGrid>
           <TyGrid>
             <TyText as="p" type="sm">
