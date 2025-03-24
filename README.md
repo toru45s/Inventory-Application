@@ -1,9 +1,10 @@
 # Inventory Management Application
 
 ## Technologies
-
 - TypeScript
 - Next.js
+- Tailwind CSS
+- shacn
 - Zustand
 - zod
 - dayjs
